@@ -1,0 +1,4 @@
+*/5 8-20 * 9-12 0 yarn start >> /tmp/sunday.log # Every Sunday, every 5 minutes during the hours of 12a, 1p-11p ET
+*/5 15-20 * 9-12 1 yarn start >> /tmp/monday.log # Every Monday, every 5 minutes during the hours of 12a, 7p-11p ET
+*/5 15-20 * 9-12 4 yarn start >> /tmp/thursday.log # Every Thursday, every 5 minutes during the hours of 12a, 7p-11p ET
+0 0 * 9-12 4 yarn previous > /tmp/sct.log # Every Thursday, at 4am ET

@@ -5,7 +5,9 @@
   "module": "main.js",
   "license": "MIT",
   "scripts": {
-    "start": "DEBUG=tloei* babel-node ./src"
+    "start": "DEBUG=tloei* babel-node ./src",
+    "previous": "PREVIOUS_WEEK=1 yarn -s start",
+    "print": "PRINT=1 yarn -s start"
   },
   "dependencies": {
     "date-fns": "^2.1.0",
@@ -14,11 +16,7 @@
     "esm": "^3.2.25",
     "fs-extra": "^8.1.0",
     "got": "^9.6.0",
-    "is-root": "^2.1.0",
-    "puppeteer": "^1.19.0",
-    "ramda": "^0.26.1",
-    "slack": "^11.0.2",
-    "update-dotenv": "^1.1.1"
+    "ramda": "^0.26.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

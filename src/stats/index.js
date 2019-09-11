@@ -1,21 +1,17 @@
 import { getConfig } from 'config';
-import { saveAdjustments, saveMatchups, saveSettings } from 'utils/file';
+import { Matchup } from 'types/matchup';
 import { fetch as fetchWeekScores } from '../scores';
 import { addAdjustments, apply } from './adjustments';
 import { print } from './adjustments/print';
 
-export const process = async ({ page, settings, weekId }) => {
-  await saveSettings(settings);
+const { PRINT } = getConfig();
 
+export const process = async ({ settings, weekId }) => {
   const matchups = await fetchWeekScores({ settings, weekId });
-
   const amendedMatchups = addAdjustments({ matchups, settings });
+  const slimMatchups = await Matchup.apiToUi(amendedMatchups);
 
-  await saveMatchups(amendedMatchups);
+  PRINT && print({ matchups: slimMatchups, settings });
 
-  const slimMatchups = await saveAdjustments(amendedMatchups);
-
-  getConfig().PRINT && print({ matchups: slimMatchups, settings });
-
-  await apply({ matchups: slimMatchups, page, weekId });
+  await apply({ matchups: slimMatchups, weekId });
 };

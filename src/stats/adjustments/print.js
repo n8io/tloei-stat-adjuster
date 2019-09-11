@@ -1,12 +1,8 @@
+import { Adjustment } from 'types/adjustment';
 import { LeagueMember } from 'types/leagueMember';
 
-export const adjustementToPrint = ({ bonus, player, type }) => {
-  const { firstName, lastName } = player;
-
-  return `${firstName} ${lastName} ${type} = ${bonus}`;
-};
 const adjustmentToString = abbrev => adjustment =>
-  `${abbrev}: ${adjustementToPrint(adjustment)}`;
+  `${abbrev}: ${Adjustment.adjustementToPrint(adjustment)}`;
 
 export const print = ({ matchups, settings }) => {
   const adjustments = matchups.reduce((acc, { away, home }) => {
@@ -27,5 +23,5 @@ export const print = ({ matchups, settings }) => {
   }, []);
 
   // eslint-disable-next-line no-console
-  console.log(adjustments.join('\n'));
+  adjustments.length > 0 && console.log(adjustments.join('\n'));
 };

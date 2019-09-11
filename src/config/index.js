@@ -1,5 +1,5 @@
 import dotEnv from 'dotenv-safe';
-import { evolve, pipe } from 'ramda';
+import { evolve, isNil, pick, pipe, prop } from 'ramda';
 import { stringToBool } from 'utils/bool';
 import { number } from 'utils/number';
 
@@ -14,19 +14,10 @@ const config = Object.keys(process.env)
       k.startsWith('ESPN_') ||
       [
         'APPLY_ADJUSTMENTS',
-        'BITLY_API_KEY',
         'DEBUG',
-        'GIST_TOKEN',
-        'HEADLESS',
-        'LOG_SCORING_ADJUSTMENTS',
-        'LOG_TROPHIES',
-        'NODE_ENV',
+        'PREVIOUS_WEEK',
         'PRINT',
-        'PUPPETEER_ARGS',
-        'REFRESH_SETTINGS',
-        'SEND_NOTIFICATIONS',
-        'SLACK_CHANNEL',
-        'SLACK_TOKEN',
+        'SHOW_CONFIG',
       ].indexOf(k) > -1
   )
   // eslint-disable-next-line no-process-env
@@ -37,22 +28,40 @@ const getConfig = () =>
     props => ({
       APPLY_ADJUSTMENTS: false,
       DEBUG: '',
-      HEADLESS: true,
+      PREVIOUS_WEEK: false,
       PRINT: false,
-      REFRESH_SETTINGS: false,
-      SEND_NOTIFICATION: false,
+      SHOW_CONFIG: false,
       ...props,
     }),
     evolve({
       APPLY_ADJUSTMENTS: stringToBool,
       ESPN_LEAGUE_ID: number(),
       ESPN_SEASON_ID: number(),
-      ESPN_WEEK_ID: number(-1),
-      HEADLESS: stringToBool,
+      ESPN_WEEK_ID: number(),
+      PREVIOUS_WEEK: stringToBool,
       PRINT: stringToBool,
-      REFRESH_SETTINGS: stringToBool,
-      SEND_NOTIFICATION: stringToBool,
+      SHOW_CONFIG: stringToBool,
     })
   )(config);
 
-export { getConfig };
+const validate = cfg => {
+  const requiredKeys = [
+    'ESPN_LEAGUE_ID',
+    'ESPN_SEASON_ID',
+    'ESPN_SESSION_COOKIE',
+  ];
+
+  const invalidKeys = requiredKeys.filter(key => isNil(prop(key, cfg)));
+
+  if (invalidKeys.length > 0) {
+    const msg = `Config is missing required items: ${invalidKeys.join(', ')}`;
+
+    throw new Error(msg);
+  }
+
+  cfg.SHOW_CONFIG &&
+    // eslint-disable-next-line no-console
+    console.log(JSON.stringify(pick(requiredKeys, cfg), null, 2));
+};
+
+export { getConfig, validate };

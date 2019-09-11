@@ -6,8 +6,17 @@ import { post } from 'utils/post';
 
 const { APPLY_ADJUSTMENTS } = getConfig();
 
+// eslint-disable-next-line max-statements
 const apply = async ({ matchups, weekId }) => {
   const log = debug('tloei:stats:adjustments:apply');
+
+  const adjustments = Adjustment.uiToApi(matchups);
+
+  if (!Adjustment.hasValidAdjustments(adjustments)) {
+    log(`🚫 No stat adjustments to apply.`);
+
+    return;
+  }
 
   if (!APPLY_ADJUSTMENTS) {
     log(
@@ -19,10 +28,8 @@ const apply = async ({ matchups, weekId }) => {
 
   const url = new URL(hydrate(Url.API_SCORE_ADJUSTMENT));
 
-  const payload = Adjustment.uiToApi(matchups);
-
   log(`🔢 Applying stat adjustments ${url.href}...`);
-  await post(url.href, payload);
+  await post(url.href, adjustments);
 
   log(`👍 Stat adjustments applied`);
 };

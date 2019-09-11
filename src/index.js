@@ -1,23 +1,20 @@
-import { getConfig } from 'config';
-import { login } from 'login';
+import { getConfig, validate } from 'config';
 import { load as loadSettings } from 'settings';
 import { process } from 'stats';
-import { makeBrowser, makePage } from 'utils/puppeteer';
+import { Week } from 'types/week';
 
 (async () => {
-  const browser = await makeBrowser();
-  const page = await makePage(browser);
-
   try {
-    await login(page);
+    const config = getConfig();
 
-    const settings = await loadSettings(page);
+    validate(config);
 
-    await process({ page, settings, weekId: getConfig().ESPN_WEEK_ID });
+    const weekId = await Week.getWeekId();
+    const settings = await loadSettings();
+
+    await process({ settings, weekId });
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e);
-  } finally {
-    if (browser) browser.close();
   }
 })();

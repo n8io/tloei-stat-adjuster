@@ -1,11 +1,16 @@
 import { join, map, pipe, prop, sum } from 'ramda';
-import { adjustementToPrint } from 'stats/adjustments/print';
 
 const sumAdjustments = pipe(
   prop('adjustments'),
   map(prop('bonus')),
   sum
 );
+
+const adjustementToPrint = ({ bonus, player, type }) => {
+  const { firstName, lastName } = player;
+
+  return `${firstName} ${lastName} ${type} = ${bonus}`;
+};
 
 const formatAdjustmentReasons = pipe(
   map(adjustementToPrint),
@@ -39,6 +44,13 @@ const matchupToAdjustment = ({ away, home, id: matchupId }) => {
 
 const uiToApi = map(matchupToAdjustment);
 
+const hasValidAdjustments = adjustments =>
+  adjustments.some(
+    ({ away, home }) => away.adjustment > 0 || home.adjustment > 0
+  );
+
 export const Adjustment = {
+  adjustementToPrint,
+  hasValidAdjustments,
   uiToApi,
 };
