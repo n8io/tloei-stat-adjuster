@@ -1,12 +1,10 @@
 import { getConfig } from 'config';
 import { Adjustment } from 'types/adjustment';
 import { hydrate, Url } from 'types/url';
-import { logFactory } from 'utils/log';
+import { log } from 'utils/log';
 import { post } from 'utils/post';
 
 const { APPLY_ADJUSTMENTS } = getConfig();
-
-const log = logFactory('tloei:stats:adjustments:apply');
 
 // eslint-disable-next-line max-statements
 const apply = async ({ matchups, weekId }) => {

@@ -1,11 +1,9 @@
 import { Adjustment } from 'types/adjustment';
 import { LeagueMember } from 'types/leagueMember';
-import { logFactory } from 'utils/log';
+import { log } from 'utils/log';
 
 const adjustmentToString = abbrev => adjustment =>
   `${abbrev}: ${Adjustment.adjustementToPrint(adjustment)}`;
-
-const log = logFactory('tloei:stats:adjustments:print');
 
 const printAdjustments = adjustments => {
   log(`🖨️ Printing adjustments...\n  ${adjustments.join('\n  ')}`);

@@ -1,9 +1,7 @@
-import { logFactory } from 'utils/log';
+import { log } from 'utils/log';
 import { readEspnSettings, readLeagueSettings } from 'utils/settings';
 
 const load = async () => {
-  const log = logFactory('tloei:settings:load');
-
   log('⚙️ Loading settings files...');
 
   const espn = await readEspnSettings();

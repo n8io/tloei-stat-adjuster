@@ -1,4 +1,9 @@
-export const logFactory = key => {
+export const log = message =>
   // eslint-disable-next-line no-console
-  return message => console.log(`${new Date().toISOString()}: ${message}`);
-};
+  console.log(
+    `${new Date().toLocaleString('en-US', {
+      hour: 'numeric',
+      hour12: true,
+      minute: 'numeric',
+    })}: ${message}`
+  );

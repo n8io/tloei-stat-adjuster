@@ -4,7 +4,7 @@ import { LeagueView } from 'types/leagueViews';
 import { Player } from 'types/player';
 import { hydrate, Url } from 'types/url';
 import { fetch as fetchJson } from 'utils/fetch';
-import { logFactory } from 'utils/log';
+import { log } from 'utils/log';
 import { renameKeys } from 'utils/renameKeys';
 import { memberMatchupIdsByWeek } from './utils/memberMatchupIdsByWeek';
 
@@ -31,7 +31,6 @@ const homeTransform = makeMatchupTransform(false);
 
 // eslint-disable-next-line max-statements
 export const fetch = async ({ settings, weekId }) => {
-  const log = logFactory('tloei:scores:week');
   const url = new URL(hydrate(Url.API_LEAGUE_SETTINGS));
   const members = LeagueMember.selector(settings);
 
