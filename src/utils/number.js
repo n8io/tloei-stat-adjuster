@@ -1,8 +1,7 @@
-import { always, defaultTo, equals, pipe, when } from 'ramda';
+import { always, pipe, unless } from 'ramda';
 
 export const number = fallback =>
   pipe(
-    Number,
-    when(equals(0), always(undefined)),
-    defaultTo(fallback)
+    input => parseInt(input, 10),
+    unless(Number.isInteger, always(fallback))
   );

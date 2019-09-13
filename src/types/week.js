@@ -1,15 +1,15 @@
 import { getConfig } from 'config';
-import debug from 'debug';
 import { prop, subtract } from 'ramda';
 import { fetch } from 'utils/fetch';
+import { logFactory } from 'utils/log';
 import { LeagueView } from './leagueViews';
-import { Url, hydrate } from './url';
+import { hydrate, Url } from './url';
 
 const selector = prop('scoringPeriodId');
 
 // eslint-disable-next-line max-statements
 const getWeekId = async () => {
-  const log = debug('tloei:week');
+  const log = logFactory('tloei:week');
   const config = getConfig();
 
   const { ESPN_WEEK_ID: tempWeekId, PREVIOUS_WEEK } = config;

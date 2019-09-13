@@ -1,8 +1,8 @@
-import debug from 'debug';
+import { logFactory } from 'utils/log';
 import { readEspnSettings, readLeagueSettings } from 'utils/settings';
 
 const load = async () => {
-  const log = debug('tloei:settings:load');
+  const log = logFactory('tloei:settings:load');
 
   log('⚙️ Loading settings files...');
 

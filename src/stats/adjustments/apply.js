@@ -1,24 +1,22 @@
 import { getConfig } from 'config';
-import debug from 'debug';
 import { Adjustment } from 'types/adjustment';
 import { hydrate, Url } from 'types/url';
+import { logFactory } from 'utils/log';
 import { post } from 'utils/post';
 
 const { APPLY_ADJUSTMENTS } = getConfig();
 
+const log = logFactory('tloei:stats:adjustments:apply');
+
 // eslint-disable-next-line max-statements
 const apply = async ({ matchups, weekId }) => {
-  const log = debug('tloei:stats:adjustments:apply');
-
   const adjustments = Adjustment.uiToApi(matchups);
 
   if (!Adjustment.hasValidAdjustments(adjustments)) {
     log(`🚫 No stat adjustments to apply.`);
 
     return;
-  }
-
-  if (!APPLY_ADJUSTMENTS) {
+  } else if (!APPLY_ADJUSTMENTS) {
     log(
       `⚠️ **** DRY RUN Week ${weekId} stat adjustments were NOT applied *** ️️⚠️`
     );

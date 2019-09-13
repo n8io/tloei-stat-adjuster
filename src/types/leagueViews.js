@@ -1,6 +1,6 @@
 const Enumeration = {
   LIGHT: 'modular',
-  MATCHUPS: 'mMatchupScores',
+  MATCHUPS: 'mMatchupScore',
   MEMBERS: 'mNav',
   SCORES: 'mScoreboard',
   SETTINGS: 'mSettings',

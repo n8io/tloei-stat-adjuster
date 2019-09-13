@@ -1,8 +1,15 @@
 import { Adjustment } from 'types/adjustment';
 import { LeagueMember } from 'types/leagueMember';
+import { logFactory } from 'utils/log';
 
 const adjustmentToString = abbrev => adjustment =>
   `${abbrev}: ${Adjustment.adjustementToPrint(adjustment)}`;
+
+const log = logFactory('tloei:stats:adjustments:print');
+
+const printAdjustments = adjustments => {
+  log(`🖨️ Printing adjustments...\n  ${adjustments.join('\n  ')}`);
+};
 
 export const print = ({ matchups, settings }) => {
   const adjustments = matchups.reduce((acc, { away, home }) => {
@@ -23,5 +30,5 @@ export const print = ({ matchups, settings }) => {
   }, []);
 
   // eslint-disable-next-line no-console
-  adjustments.length > 0 && console.log(adjustments.join('\n'));
+  adjustments.length > 0 && printAdjustments(adjustments);
 };
