@@ -1,5 +1,4 @@
 import { join, map, pipe, prop, sum } from 'ramda';
-import { Bonus } from './bonus';
 
 const sumAdjustments = pipe(
   prop('adjustments'),
@@ -20,15 +19,13 @@ const formatAdjustmentReasons = pipe(
 
 const matchupToAdjustment = ({ away, home, id: matchupId }) => {
   const aAdjustment = sumAdjustments(away);
-  const hAdjustment = sumAdjustments(home) + Bonus.HOME_TEAM;
+  const hAdjustment = sumAdjustments(home);
 
   const aAdjustments = prop('adjustments', away);
   const hAdjustments = prop('adjustments', home);
 
   const aAdjustmentReasons = formatAdjustmentReasons(aAdjustments);
-  const hAdjustmentReasons = `${formatAdjustmentReasons(
-    hAdjustments
-  )} / HOME_TEAM = 1`;
+  const hAdjustmentReasons = formatAdjustmentReasons(hAdjustments);
 
   return {
     away: {
@@ -49,7 +46,7 @@ const uiToApi = map(matchupToAdjustment);
 
 const hasValidAdjustments = adjustments =>
   adjustments.some(
-    ({ away, home }) => away.adjustment > 0 || home.adjustment > Bonus.HOME_TEAM
+    ({ away, home }) => away.adjustment > 0 || home.adjustment > 0
   );
 
 export const Adjustment = {
