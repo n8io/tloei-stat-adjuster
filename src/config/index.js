@@ -14,10 +14,16 @@ const config = Object.keys(process.env)
       k.startsWith('ESPN_') ||
       [
         'APPLY_ADJUSTMENTS',
+        'BITLY_ACCESS_TOKEN',
+        'BITLY_APP_CLIENT_ID',
+        'BITLY_APP_SECRET',
         'DEBUG',
+        'GOOGLE_DOC_ID',
+        'NOTIFY',
         'PREVIOUS_WEEK',
         'PRINT',
         'SHOW_CONFIG',
+        'SLACK_WEBHOOK_URL',
       ].indexOf(k) > -1
   )
   // eslint-disable-next-line no-process-env
@@ -28,6 +34,7 @@ const getConfig = () =>
     props => ({
       APPLY_ADJUSTMENTS: false,
       DEBUG: '',
+      NOTIFY: false,
       PREVIOUS_WEEK: false,
       PRINT: false,
       SHOW_CONFIG: false,
@@ -38,6 +45,7 @@ const getConfig = () =>
       ESPN_LEAGUE_ID: number(),
       ESPN_SEASON_ID: number(),
       ESPN_WEEK_ID: number(),
+      NOTIFY: stringToBool,
       PREVIOUS_WEEK: stringToBool,
       PRINT: stringToBool,
       SHOW_CONFIG: stringToBool,
@@ -46,9 +54,14 @@ const getConfig = () =>
 
 const validate = cfg => {
   const requiredKeys = [
+    'BITLY_ACCESS_TOKEN',
+    'BITLY_APP_CLIENT_ID',
+    'BITLY_APP_SECRET',
     'ESPN_LEAGUE_ID',
     'ESPN_SEASON_ID',
     'ESPN_SESSION_COOKIE',
+    'GOOGLE_DOC_ID',
+    'SLACK_WEBHOOK_URL',
   ];
 
   const invalidKeys = requiredKeys.filter(key => isNil(prop(key, cfg)));
@@ -61,7 +74,9 @@ const validate = cfg => {
 
   cfg.SHOW_CONFIG &&
     // eslint-disable-next-line no-console
-    console.log(JSON.stringify(pick(requiredKeys, cfg), null, 2));
+    console.log(
+      JSON.stringify(pick(['NOTIFY', ...requiredKeys], cfg), null, 2)
+    );
 };
 
 export { getConfig, validate };

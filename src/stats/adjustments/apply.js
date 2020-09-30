@@ -3,12 +3,20 @@ import { Adjustment } from 'types/adjustment';
 import { hydrate, Url } from 'types/url';
 import { log } from 'utils/log';
 import { post } from 'utils/post';
+import { save as saveGoogle } from './google';
+import { notify } from './notify';
 
-const { APPLY_ADJUSTMENTS } = getConfig();
+const { APPLY_ADJUSTMENTS, NOTIFY } = getConfig();
 
 // eslint-disable-next-line max-statements
 const apply = async ({ matchups, weekId }) => {
   const adjustments = Adjustment.uiToApi(matchups);
+
+  const dataAdjustments = Adjustment.matchupsToAdjustments(matchups);
+
+  const logUrl = await saveGoogle({ adjustments: dataAdjustments, weekId });
+
+  NOTIFY && await notify({url: logUrl, weekId});
 
   if (!Adjustment.hasValidAdjustments(adjustments)) {
     log(`🚫 No stat adjustments to apply.`);
@@ -26,10 +34,7 @@ const apply = async ({ matchups, weekId }) => {
 
   log(`🔢 Applying stat adjustments ${url.href}...`);
   await post(url.href, adjustments);
-
   log(`👍 Stat adjustments applied`);
 };
 
 export { apply };
-
-// [{"away":{"adjustment":0,"adjustmentReason":"","teamId":1},"home":{"adjustment":0,"adjustmentReason":"","teamId":5},"id":3}]

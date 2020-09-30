@@ -9,7 +9,7 @@ import { Week } from 'types/week';
 
     validate(config);
 
-    const weekId = await Week.getWeekId();
+    const weekId = await Week.getCurrent();
     const settings = await loadSettings();
 
     await process({ settings, weekId });

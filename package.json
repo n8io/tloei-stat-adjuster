@@ -15,8 +15,11 @@
     "dotenv-safe": "^8.1.0",
     "esm": "^3.2.25",
     "fs-extra": "^8.1.0",
+    "google-spreadsheet": "^3.0.13",
     "got": "^9.6.0",
-    "ramda": "^0.26.1"
+    "node-bitlyapi": "^0.4.0",
+    "ramda": "^0.26.1",
+    "slugify": "^1.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

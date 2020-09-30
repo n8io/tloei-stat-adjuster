@@ -1,4 +1,20 @@
-import { find, path, propEq } from 'ramda';
+import { find, indexBy, path, pipe, prop, propEq, toString, __ } from 'ramda';
+import espn from '../data/espn';
+
+const { lineupSlotsMap, positions: tempPositions } = espn.constants;
+const positionsMap = indexBy(prop('id'), tempPositions);
+
+const findPositionAbbrev = pipe(
+  toString,
+  prop(__, positionsMap),
+  prop('abbrev')
+);
+
+const findLineupSlotById = pipe(
+  toString,
+  prop(__, lineupSlotsMap),
+  prop('abbrev')
+);
 
 const findPositionByAbbrev = ({ espnSettings, position }) => {
   const positions = path(['constants', 'positions'], espnSettings);
@@ -47,6 +63,8 @@ export const Position = {
   RB,
   TE,
   WR,
+  findLineupSlotById,
+  findPositionAbbrev,
   findPositionByAbbrev,
   findPositionById,
 };

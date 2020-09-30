@@ -8,7 +8,7 @@ import { hydrate, Url } from './url';
 const selector = prop('scoringPeriodId');
 
 // eslint-disable-next-line max-statements
-const getWeekId = async () => {
+const getCurrent = async () => {
   const config = getConfig();
 
   const { ESPN_WEEK_ID: tempWeekId, PREVIOUS_WEEK } = config;
@@ -40,5 +40,5 @@ const getWeekId = async () => {
 };
 
 export const Week = {
-  getWeekId,
+  getCurrent,
 };

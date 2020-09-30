@@ -3,7 +3,7 @@ import { LeagueMember } from 'types/leagueMember';
 import { log } from 'utils/log';
 
 const adjustmentToString = abbrev => adjustment =>
-  `${abbrev}: ${Adjustment.adjustementToPrint(adjustment)}`;
+  `${abbrev}: ${Adjustment.adjustmentToPrint(adjustment)}`;
 
 const printAdjustments = adjustments => {
   log(`🖨️ Printing adjustments...\n  ${adjustments.join('\n  ')}`);
