@@ -12,12 +12,6 @@ const { APPLY_ADJUSTMENTS, NOTIFY } = getConfig();
 const apply = async ({ matchups, weekId }) => {
   const adjustments = Adjustment.uiToApi(matchups);
 
-  const dataAdjustments = Adjustment.matchupsToAdjustments(matchups);
-
-  const logUrl = await saveGoogle({ adjustments: dataAdjustments, weekId });
-
-  NOTIFY && await notify({url: logUrl, weekId});
-
   if (!Adjustment.hasValidAdjustments(adjustments)) {
     log(`🚫 No stat adjustments to apply.`);
 
@@ -35,6 +29,11 @@ const apply = async ({ matchups, weekId }) => {
   log(`🔢 Applying stat adjustments ${url.href}...`);
   await post(url.href, adjustments);
   log(`👍 Stat adjustments applied`);
+
+  const dataAdjustments = Adjustment.matchupsToAdjustments(matchups);
+  const logUrl = await saveGoogle({ adjustments: dataAdjustments, weekId });
+
+  NOTIFY && await notify({url: logUrl, weekId});
 };
 
 export { apply };
