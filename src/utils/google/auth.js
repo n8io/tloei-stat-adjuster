@@ -1,4 +1,3 @@
-import { pick } from 'ramda';
 import { log } from 'utils/log';
 import secrets from '../../../client_secret';
 

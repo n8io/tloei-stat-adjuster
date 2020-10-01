@@ -14,7 +14,7 @@ export NVM_DIR="/root/.nvm"
 
 cd "$DIR"
 
-export APPLY_ADJUSTMENTS={$APPLY_ADJUSTMENTS:-1}
+export APPLY_ADJUSTMENTS=${APPLY_ADJUSTMENTS:-1}
 export PRINT=1
 
 if [ $CMD = "previous" ]; then
