@@ -17,7 +17,7 @@ cd "$DIR"
 export APPLY_ADJUSTMENTS=${APPLY_ADJUSTMENTS:-1}
 export PRINT=1
 
-if [ $CMD = "previous" ]; then
+if [ "$NOTIFY" = "notify" ]; then
   export NOTIFY=1
 fi
 
