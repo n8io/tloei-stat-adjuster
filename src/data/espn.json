@@ -6,8 +6,8 @@
     "WAIVERS_CONTINUOUS",
     "WAIVERS_TRADITIONAL_FAAB"
   ],
-  "color": "#39b54a",
-  "colorRGB": "57, 181, 74",
+  "color": "#0d830f",
+  "colorRGB": "13, 131, 15",
   "communicationFilterTypes": {
     "leagueChatFilter": "MSG_BOARD_GROUP",
     "lmNoteFilter": "NOTE",
@@ -1361,6 +1361,15 @@
           "displayOrder": 0,
           "display": true,
           "formatRequired": true
+        },
+        {
+          "id": 252,
+          "name": "TRANSACTION_LIKELY_TO_TRADE",
+          "abbrev": null,
+          "description": null,
+          "displayOrder": 0,
+          "display": true,
+          "formatRequired": true
         }
       ],
       "communicationTypes": {
@@ -1386,6 +1395,7 @@
         "transactionDraft": 189,
         "transactionDraftTrade": 190,
         "transactionFailedTradeRosterLock": 194,
+        "transactionFailedIneligibleSlot": 199,
         "transactionFailedWaiverClaim": 202,
         "transactionTradeAcceptTrade": 224,
         "transactionDraftTradeAccept": 226,
@@ -1404,7 +1414,10 @@
         "transactionLMTradeVetoDrop": 242,
         "transactionLMTradeVetoDraftTrade": 243,
         "transactionLMMatchupAdjustmentChange": 247,
-        "transactionLikelyToTrade": 252
+        "transactionLikelyToTrade": 252,
+        "transactionLMSetToAuto": 256,
+        "transactionLMRemoveFromAuto": 257,
+        "bonusWinsAndLosses": 258
       }
     },
     "communicationFilterTypes": {
@@ -1419,126 +1432,12 @@
       "scheduleFilter": "ACTIVITY_SCHEDULE"
     },
     "deadlineSettings": {
-      "keeperEndDate": 1641801600000,
-      "keeperFutureEndDate": 1673337600000,
-      "keeperFutureStartDate": 1647072000000,
-      "keeperStartDate": 1615536000000,
-      "tradeEndDate": 1641801600000,
-      "tradeStartDate": 1615536000000
-    },
-    "draftScheduleSettings": {
-      "availableTimes": {
-        "0": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "1": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "2": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "3": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "4": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "5": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "12": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "13": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "14": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "15": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "16": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "17": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "18": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "19": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "20": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "21": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "22": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        },
-        "23": {
-          "0": 1,
-          "15": 1,
-          "30": 1,
-          "45": 1
-        }
-      },
-      "endDate": 1635836400000,
-      "startDate": 1615536000000
+      "keeperEndDate": 1673251200000,
+      "keeperFutureEndDate": 1704787200000,
+      "keeperFutureStartDate": 1679986800000,
+      "keeperStartDate": 1648450800000,
+      "tradeEndDate": 1673251200000,
+      "tradeStartDate": 1648450800000
     },
     "lineupSlots": [
       {
@@ -1938,7 +1837,7 @@
         "active": true,
         "bench": false,
         "canApplyLimitIndividually": false,
-        "display": true,
+        "display": false,
         "displayOrder": 13,
         "eligiblePositions": [17],
         "id": 24,
@@ -2378,7 +2277,7 @@
         "active": true,
         "bench": false,
         "canApplyLimitIndividually": false,
-        "display": true,
+        "display": false,
         "displayOrder": 13,
         "eligiblePositions": [17],
         "id": 24,
@@ -2459,6 +2358,27 @@
     "playerRankSources": {
       "sources": [
         {
+          "abbrev": "EM",
+          "active": true,
+          "activeRankTypes": ["PPR", "STANDARD"],
+          "average": false,
+          "display": true,
+          "displayOrder": 7,
+          "id": 11,
+          "name": "Eric Moody"
+        },
+        {
+          "abbrev": "LL",
+          "active": true,
+          "activeRankTypes": ["PPR"],
+          "average": false,
+          "description": "LL",
+          "display": true,
+          "displayOrder": 6,
+          "id": 12,
+          "name": "Liz Loza"
+        },
+        {
           "active": true,
           "average": true,
           "display": true,
@@ -2476,21 +2396,22 @@
         },
         {
           "abbrev": "TMB",
-          "active": true,
+          "active": false,
           "activeRankTypes": ["PPR"],
           "average": false,
+          "description": "TMB",
           "display": true,
-          "displayOrder": 1,
+          "displayOrder": 998,
           "id": 2,
           "name": "Matthew Berry"
         },
         {
           "abbrev": "EK",
           "active": true,
-          "activeRankTypes": ["STANDARD", "PPR"],
+          "activeRankTypes": ["PPR", "STANDARD"],
           "average": false,
           "display": true,
-          "displayOrder": 2,
+          "displayOrder": 5,
           "id": 3,
           "name": "Eric Karabell"
         },
@@ -2506,10 +2427,10 @@
         {
           "abbrev": "TC",
           "active": true,
-          "activeRankTypes": ["STANDARD", "PPR"],
+          "activeRankTypes": ["PPR", "STANDARD"],
           "average": false,
           "display": true,
-          "displayOrder": 4,
+          "displayOrder": 3,
           "id": 5,
           "name": "Tristan H. Cockcroft"
         },
@@ -2519,17 +2440,18 @@
           "activeRankTypes": ["PPR"],
           "average": false,
           "display": true,
-          "displayOrder": 3,
+          "displayOrder": 8,
           "id": 6,
           "name": "Field Yates"
         },
         {
           "abbrev": "MC",
           "active": true,
-          "activeRankTypes": ["STANDARD", "PPR"],
+          "activeRankTypes": ["PPR", "STANDARD"],
           "average": false,
+          "description": "MC",
           "display": true,
-          "displayOrder": 5,
+          "displayOrder": 2,
           "id": 7,
           "name": "Mike Clay"
         },
@@ -2539,17 +2461,18 @@
           "activeRankTypes": [],
           "average": false,
           "display": true,
-          "displayOrder": 6,
+          "displayOrder": 997,
           "id": 8,
           "name": "Stephania Bell"
         },
         {
           "abbrev": "MB",
           "active": true,
-          "activeRankTypes": ["STANDARD"],
+          "activeRankTypes": ["PPR"],
           "average": false,
+          "description": "MB",
           "display": true,
-          "displayOrder": 7,
+          "displayOrder": 1,
           "id": 9,
           "name": "Matt Bowen"
         },
@@ -2558,8 +2481,9 @@
           "active": true,
           "activeRankTypes": ["PPR"],
           "average": false,
+          "description": "DOPP",
           "display": true,
-          "displayOrder": 8,
+          "displayOrder": 4,
           "id": 10,
           "name": "Daniel Dopp"
         }
@@ -2569,8 +2493,12 @@
         "2": 50,
         "4": 50,
         "6": 25,
-        "16": 25,
-        "17": 25,
+        "7": 20,
+        "10": 50,
+        "11": 50,
+        "14": 50,
+        "16": 20,
+        "17": 20,
         "23": 75
       }
     },
@@ -2748,7 +2676,7 @@
       {
         "abbrev": "EDR",
         "active": true,
-        "display": true,
+        "display": false,
         "displayOrder": 17,
         "id": 17,
         "name": "Edge Rusher",
@@ -2767,7 +2695,7 @@
       },
       {
         "abbrev": "Atl",
-        "byeWeek": 6,
+        "byeWeek": 14,
         "id": 1,
         "location": "Atlanta",
         "name": "Falcons",
@@ -2783,7 +2711,7 @@
       },
       {
         "abbrev": "Chi",
-        "byeWeek": 10,
+        "byeWeek": 14,
         "id": 3,
         "location": "Chicago",
         "name": "Bears",
@@ -2799,7 +2727,7 @@
       },
       {
         "abbrev": "Cle",
-        "byeWeek": 13,
+        "byeWeek": 9,
         "id": 5,
         "location": "Cleveland",
         "name": "Browns",
@@ -2807,7 +2735,7 @@
       },
       {
         "abbrev": "Dal",
-        "byeWeek": 7,
+        "byeWeek": 9,
         "id": 6,
         "location": "Dallas",
         "name": "Cowboys",
@@ -2815,7 +2743,7 @@
       },
       {
         "abbrev": "Den",
-        "byeWeek": 11,
+        "byeWeek": 9,
         "id": 7,
         "location": "Denver",
         "name": "Broncos",
@@ -2823,7 +2751,7 @@
       },
       {
         "abbrev": "Det",
-        "byeWeek": 9,
+        "byeWeek": 6,
         "id": 8,
         "location": "Detroit",
         "name": "Lions",
@@ -2831,7 +2759,7 @@
       },
       {
         "abbrev": "GB",
-        "byeWeek": 13,
+        "byeWeek": 14,
         "id": 9,
         "location": "Green Bay",
         "name": "Packers",
@@ -2839,7 +2767,7 @@
       },
       {
         "abbrev": "Ten",
-        "byeWeek": 13,
+        "byeWeek": 6,
         "id": 10,
         "location": "Tennessee",
         "name": "Titans",
@@ -2855,7 +2783,7 @@
       },
       {
         "abbrev": "KC",
-        "byeWeek": 12,
+        "byeWeek": 8,
         "id": 12,
         "location": "Kansas City",
         "name": "Chiefs",
@@ -2863,7 +2791,7 @@
       },
       {
         "abbrev": "LV",
-        "byeWeek": 8,
+        "byeWeek": 6,
         "id": 13,
         "location": "Las Vegas",
         "name": "Raiders",
@@ -2871,7 +2799,7 @@
       },
       {
         "abbrev": "LAR",
-        "byeWeek": 11,
+        "byeWeek": 7,
         "id": 14,
         "location": "Los Angeles",
         "name": "Rams",
@@ -2879,7 +2807,7 @@
       },
       {
         "abbrev": "Mia",
-        "byeWeek": 14,
+        "byeWeek": 11,
         "id": 15,
         "location": "Miami",
         "name": "Dolphins",
@@ -2895,7 +2823,7 @@
       },
       {
         "abbrev": "NE",
-        "byeWeek": 14,
+        "byeWeek": 10,
         "id": 17,
         "location": "New England",
         "name": "Patriots",
@@ -2903,7 +2831,7 @@
       },
       {
         "abbrev": "NO",
-        "byeWeek": 6,
+        "byeWeek": 14,
         "id": 18,
         "location": "New Orleans",
         "name": "Saints",
@@ -2911,7 +2839,7 @@
       },
       {
         "abbrev": "NYG",
-        "byeWeek": 10,
+        "byeWeek": 9,
         "id": 19,
         "location": "New York",
         "name": "Giants",
@@ -2919,7 +2847,7 @@
       },
       {
         "abbrev": "NYJ",
-        "byeWeek": 6,
+        "byeWeek": 10,
         "id": 20,
         "location": "New York",
         "name": "Jets",
@@ -2927,7 +2855,7 @@
       },
       {
         "abbrev": "Phi",
-        "byeWeek": 14,
+        "byeWeek": 7,
         "id": 21,
         "location": "Philadelphia",
         "name": "Eagles",
@@ -2935,7 +2863,7 @@
       },
       {
         "abbrev": "Ari",
-        "byeWeek": 12,
+        "byeWeek": 13,
         "id": 22,
         "location": "Arizona",
         "name": "Cardinals",
@@ -2943,7 +2871,7 @@
       },
       {
         "abbrev": "Pit",
-        "byeWeek": 7,
+        "byeWeek": 9,
         "id": 23,
         "location": "Pittsburgh",
         "name": "Steelers",
@@ -2951,7 +2879,7 @@
       },
       {
         "abbrev": "LAC",
-        "byeWeek": 7,
+        "byeWeek": 8,
         "id": 24,
         "location": "Los Angeles",
         "name": "Chargers",
@@ -2959,7 +2887,7 @@
       },
       {
         "abbrev": "SF",
-        "byeWeek": 6,
+        "byeWeek": 9,
         "id": 25,
         "location": "San Francisco",
         "name": "49ers",
@@ -2967,7 +2895,7 @@
       },
       {
         "abbrev": "Sea",
-        "byeWeek": 9,
+        "byeWeek": 11,
         "id": 26,
         "location": "Seattle",
         "name": "Seahawks",
@@ -2975,7 +2903,7 @@
       },
       {
         "abbrev": "TB",
-        "byeWeek": 9,
+        "byeWeek": 11,
         "id": 27,
         "location": "Tampa Bay",
         "name": "Buccaneers",
@@ -2983,10 +2911,10 @@
       },
       {
         "abbrev": "Wsh",
-        "byeWeek": 9,
+        "byeWeek": 14,
         "id": 28,
         "location": "Washington",
-        "name": "",
+        "name": "Commanders",
         "universeId": 2
       },
       {
@@ -2999,7 +2927,7 @@
       },
       {
         "abbrev": "Jax",
-        "byeWeek": 7,
+        "byeWeek": 11,
         "id": 30,
         "location": "Jacksonville",
         "name": "Jaguars",
@@ -3007,7 +2935,7 @@
       },
       {
         "abbrev": "Bal",
-        "byeWeek": 8,
+        "byeWeek": 10,
         "id": 33,
         "location": "Baltimore",
         "name": "Ravens",
@@ -3015,7 +2943,7 @@
       },
       {
         "abbrev": "Hou",
-        "byeWeek": 10,
+        "byeWeek": 6,
         "id": 34,
         "location": "Houston",
         "name": "Texans",
@@ -3033,7 +2961,7 @@
       },
       "1": {
         "abbrev": "Atl",
-        "byeWeek": 6,
+        "byeWeek": 14,
         "id": 1,
         "location": "Atlanta",
         "name": "Falcons",
@@ -3049,7 +2977,7 @@
       },
       "3": {
         "abbrev": "Chi",
-        "byeWeek": 10,
+        "byeWeek": 14,
         "id": 3,
         "location": "Chicago",
         "name": "Bears",
@@ -3065,7 +2993,7 @@
       },
       "5": {
         "abbrev": "Cle",
-        "byeWeek": 13,
+        "byeWeek": 9,
         "id": 5,
         "location": "Cleveland",
         "name": "Browns",
@@ -3073,7 +3001,7 @@
       },
       "6": {
         "abbrev": "Dal",
-        "byeWeek": 7,
+        "byeWeek": 9,
         "id": 6,
         "location": "Dallas",
         "name": "Cowboys",
@@ -3081,7 +3009,7 @@
       },
       "7": {
         "abbrev": "Den",
-        "byeWeek": 11,
+        "byeWeek": 9,
         "id": 7,
         "location": "Denver",
         "name": "Broncos",
@@ -3089,7 +3017,7 @@
       },
       "8": {
         "abbrev": "Det",
-        "byeWeek": 9,
+        "byeWeek": 6,
         "id": 8,
         "location": "Detroit",
         "name": "Lions",
@@ -3097,7 +3025,7 @@
       },
       "9": {
         "abbrev": "GB",
-        "byeWeek": 13,
+        "byeWeek": 14,
         "id": 9,
         "location": "Green Bay",
         "name": "Packers",
@@ -3105,7 +3033,7 @@
       },
       "10": {
         "abbrev": "Ten",
-        "byeWeek": 13,
+        "byeWeek": 6,
         "id": 10,
         "location": "Tennessee",
         "name": "Titans",
@@ -3121,7 +3049,7 @@
       },
       "12": {
         "abbrev": "KC",
-        "byeWeek": 12,
+        "byeWeek": 8,
         "id": 12,
         "location": "Kansas City",
         "name": "Chiefs",
@@ -3129,7 +3057,7 @@
       },
       "13": {
         "abbrev": "LV",
-        "byeWeek": 8,
+        "byeWeek": 6,
         "id": 13,
         "location": "Las Vegas",
         "name": "Raiders",
@@ -3137,7 +3065,7 @@
       },
       "14": {
         "abbrev": "LAR",
-        "byeWeek": 11,
+        "byeWeek": 7,
         "id": 14,
         "location": "Los Angeles",
         "name": "Rams",
@@ -3145,7 +3073,7 @@
       },
       "15": {
         "abbrev": "Mia",
-        "byeWeek": 14,
+        "byeWeek": 11,
         "id": 15,
         "location": "Miami",
         "name": "Dolphins",
@@ -3161,7 +3089,7 @@
       },
       "17": {
         "abbrev": "NE",
-        "byeWeek": 14,
+        "byeWeek": 10,
         "id": 17,
         "location": "New England",
         "name": "Patriots",
@@ -3169,7 +3097,7 @@
       },
       "18": {
         "abbrev": "NO",
-        "byeWeek": 6,
+        "byeWeek": 14,
         "id": 18,
         "location": "New Orleans",
         "name": "Saints",
@@ -3177,7 +3105,7 @@
       },
       "19": {
         "abbrev": "NYG",
-        "byeWeek": 10,
+        "byeWeek": 9,
         "id": 19,
         "location": "New York",
         "name": "Giants",
@@ -3185,7 +3113,7 @@
       },
       "20": {
         "abbrev": "NYJ",
-        "byeWeek": 6,
+        "byeWeek": 10,
         "id": 20,
         "location": "New York",
         "name": "Jets",
@@ -3193,7 +3121,7 @@
       },
       "21": {
         "abbrev": "Phi",
-        "byeWeek": 14,
+        "byeWeek": 7,
         "id": 21,
         "location": "Philadelphia",
         "name": "Eagles",
@@ -3201,7 +3129,7 @@
       },
       "22": {
         "abbrev": "Ari",
-        "byeWeek": 12,
+        "byeWeek": 13,
         "id": 22,
         "location": "Arizona",
         "name": "Cardinals",
@@ -3209,7 +3137,7 @@
       },
       "23": {
         "abbrev": "Pit",
-        "byeWeek": 7,
+        "byeWeek": 9,
         "id": 23,
         "location": "Pittsburgh",
         "name": "Steelers",
@@ -3217,7 +3145,7 @@
       },
       "24": {
         "abbrev": "LAC",
-        "byeWeek": 7,
+        "byeWeek": 8,
         "id": 24,
         "location": "Los Angeles",
         "name": "Chargers",
@@ -3225,7 +3153,7 @@
       },
       "25": {
         "abbrev": "SF",
-        "byeWeek": 6,
+        "byeWeek": 9,
         "id": 25,
         "location": "San Francisco",
         "name": "49ers",
@@ -3233,7 +3161,7 @@
       },
       "26": {
         "abbrev": "Sea",
-        "byeWeek": 9,
+        "byeWeek": 11,
         "id": 26,
         "location": "Seattle",
         "name": "Seahawks",
@@ -3241,7 +3169,7 @@
       },
       "27": {
         "abbrev": "TB",
-        "byeWeek": 9,
+        "byeWeek": 11,
         "id": 27,
         "location": "Tampa Bay",
         "name": "Buccaneers",
@@ -3249,10 +3177,10 @@
       },
       "28": {
         "abbrev": "Wsh",
-        "byeWeek": 9,
+        "byeWeek": 14,
         "id": 28,
         "location": "Washington",
-        "name": "",
+        "name": "Commanders",
         "universeId": 2
       },
       "29": {
@@ -3265,7 +3193,7 @@
       },
       "30": {
         "abbrev": "Jax",
-        "byeWeek": 7,
+        "byeWeek": 11,
         "id": 30,
         "location": "Jacksonville",
         "name": "Jaguars",
@@ -3273,7 +3201,7 @@
       },
       "33": {
         "abbrev": "Bal",
-        "byeWeek": 8,
+        "byeWeek": 10,
         "id": 33,
         "location": "Baltimore",
         "name": "Ravens",
@@ -3281,7 +3209,7 @@
       },
       "34": {
         "abbrev": "Hou",
-        "byeWeek": 10,
+        "byeWeek": 6,
         "id": 34,
         "location": "Houston",
         "name": "Texans",
@@ -3327,137 +3255,137 @@
         "startDate": 0
       },
       {
-        "endDate": 1631602800000,
+        "endDate": 1663052400000,
         "id": 1,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1615536000000
+        "startDate": 1648450800000
       },
       {
-        "endDate": 1632207600000,
+        "endDate": 1663657200000,
         "id": 2,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1631602800000
+        "startDate": 1663052400000
       },
       {
-        "endDate": 1632812400000,
+        "endDate": 1664262000000,
         "id": 3,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1632207600000
+        "startDate": 1663657200000
       },
       {
-        "endDate": 1633417200000,
+        "endDate": 1664866800000,
         "id": 4,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1632812400000
+        "startDate": 1664262000000
       },
       {
-        "endDate": 1634022000000,
+        "endDate": 1665471600000,
         "id": 5,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1633417200000
+        "startDate": 1664866800000
       },
       {
-        "endDate": 1634626800000,
+        "endDate": 1666076400000,
         "id": 6,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1634022000000
+        "startDate": 1665471600000
       },
       {
-        "endDate": 1635231600000,
+        "endDate": 1666681200000,
         "id": 7,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1634626800000
+        "startDate": 1666076400000
       },
       {
-        "endDate": 1635836400000,
+        "endDate": 1667286000000,
         "id": 8,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1635231600000
+        "startDate": 1666681200000
       },
       {
-        "endDate": 1636444800000,
+        "endDate": 1667894400000,
         "id": 9,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1635836400000
+        "startDate": 1667286000000
       },
       {
-        "endDate": 1637049600000,
+        "endDate": 1668499200000,
         "id": 10,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1636444800000
+        "startDate": 1667894400000
       },
       {
-        "endDate": 1637654400000,
+        "endDate": 1669104000000,
         "id": 11,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1637049600000
+        "startDate": 1668499200000
       },
       {
-        "endDate": 1638259200000,
+        "endDate": 1669708800000,
         "id": 12,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1637654400000
+        "startDate": 1669104000000
       },
       {
-        "endDate": 1638864000000,
+        "endDate": 1670313600000,
         "id": 13,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1638259200000
+        "startDate": 1669708800000
       },
       {
-        "endDate": 1639468800000,
+        "endDate": 1670918400000,
         "id": 14,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1638864000000
+        "startDate": 1670313600000
       },
       {
-        "endDate": 1640073600000,
+        "endDate": 1671523200000,
         "id": 15,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1639468800000
+        "startDate": 1670918400000
       },
       {
-        "endDate": 1640678400000,
+        "endDate": 1672128000000,
         "id": 16,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1640073600000
+        "startDate": 1671523200000
       },
       {
-        "endDate": 1641283200000,
+        "endDate": 1672732800000,
         "id": 17,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1640678400000
+        "startDate": 1672128000000
       },
       {
-        "endDate": 1641801600000,
+        "endDate": 1673251200000,
         "id": 18,
         "postSeason": false,
         "preSeason": false,
-        "startDate": 1641283200000
+        "startDate": 1672732800000
       },
       {
-        "endDate": 1678608000000,
+        "endDate": 1711609200000,
         "id": 19,
         "postSeason": true,
         "preSeason": false,
-        "startDate": 1641801600000
+        "startDate": 1673251200000
       }
     ],
     "segments": [
@@ -7804,6 +7732,396 @@
           "statTypeId": 0
         },
         {
+          "abbrev": "PFD",
+          "active": true,
+          "apiIdentifier": "passing.passingFirstDowns",
+          "derived": false,
+          "description": "Passing First Down",
+          "display": true,
+          "displayAbbrev": "PFD",
+          "displayOrder": 211,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 211,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "RFD",
+          "active": true,
+          "apiIdentifier": "rushing.rushingFirstDowns",
+          "derived": false,
+          "description": "Rushing First Down",
+          "display": true,
+          "displayAbbrev": "RFD",
+          "displayOrder": 212,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 212,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "REFD",
+          "active": true,
+          "apiIdentifier": "receiving.receivingFirstDowns",
+          "derived": false,
+          "description": "Receiving First Down",
+          "display": true,
+          "displayAbbrev": "REFD",
+          "displayOrder": 213,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 213,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGY",
+          "active": true,
+          "apiIdentifier": "kicking.fieldGoalsMadeYards",
+          "derived": false,
+          "description": "FG Made Yards",
+          "display": true,
+          "displayAbbrev": "FGY",
+          "displayOrder": 214,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 214,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGMY",
+          "active": true,
+          "apiIdentifier": "kicking.fieldGoalsMissedYards",
+          "derived": false,
+          "description": "FG Missed Yards",
+          "display": true,
+          "displayAbbrev": "FGMY",
+          "displayOrder": 215,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 215,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGAY",
+          "active": true,
+          "apiIdentifier": "kicking.fieldGoalAttemptYards",
+          "derived": false,
+          "description": "FG Attempt Yards",
+          "display": true,
+          "displayAbbrev": "FGAY",
+          "displayOrder": 216,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 216,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGY5",
+          "active": true,
+          "derived": false,
+          "description": "Every 5 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY5",
+          "displayOrder": 217,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 217,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGY10",
+          "active": true,
+          "derived": false,
+          "description": "Every 10 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY10",
+          "displayOrder": 218,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 218,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGY20",
+          "active": true,
+          "derived": false,
+          "description": "Every 20 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY20",
+          "displayOrder": 219,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 219,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGY25",
+          "active": true,
+          "derived": false,
+          "description": "Every 25 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY25",
+          "displayOrder": 220,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 220,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGY50",
+          "active": true,
+          "derived": false,
+          "description": "Every 50 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY50",
+          "displayOrder": 221,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 221,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGY100",
+          "active": true,
+          "derived": false,
+          "description": "Every 100 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY100",
+          "displayOrder": 222,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 222,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGMY5",
+          "active": true,
+          "derived": false,
+          "description": "Every 5 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY5",
+          "displayOrder": 223,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 223,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGMY10",
+          "active": true,
+          "derived": false,
+          "description": "Every 10 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY10",
+          "displayOrder": 224,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 224,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGMY20",
+          "active": true,
+          "derived": false,
+          "description": "Every 20 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY20",
+          "displayOrder": 225,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 225,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGMY25",
+          "active": true,
+          "derived": false,
+          "description": "Every 25 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY25",
+          "displayOrder": 226,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 226,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGMY50",
+          "active": true,
+          "derived": false,
+          "description": "Every 50 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY50",
+          "displayOrder": 227,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 227,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGMY100",
+          "active": true,
+          "derived": false,
+          "description": "Every 100 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY100",
+          "displayOrder": 228,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 228,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGAY5",
+          "active": true,
+          "derived": false,
+          "description": "Every 5 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY5",
+          "displayOrder": 229,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 229,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGAY10",
+          "active": true,
+          "derived": false,
+          "description": "Every 10 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY10",
+          "displayOrder": 230,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 230,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGAY20",
+          "active": true,
+          "derived": false,
+          "description": "Every 20 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY20",
+          "displayOrder": 231,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 231,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGAY25",
+          "active": true,
+          "derived": false,
+          "description": "Every 25 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY25",
+          "displayOrder": 232,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 232,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGAY50",
+          "active": true,
+          "derived": false,
+          "description": "Every 50 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY50",
+          "displayOrder": 233,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 233,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
+          "abbrev": "FGAY100",
+          "active": true,
+          "derived": false,
+          "description": "Every 100 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY100",
+          "displayOrder": 234,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 234,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        {
           "abbrev": "MISCTD",
           "active": true,
           "derived": true,
@@ -7912,6 +8230,8 @@
               },
               "SCORING_BREAKDOWN": {
                 "fixed": [
+                  "TW",
+                  "TL",
                   "PA",
                   "PC",
                   "INC",
@@ -8002,6 +8322,8 @@
               },
               "SCORING_BREAKDOWN": {
                 "fixed": [
+                  "TW",
+                  "TL",
                   "FTD",
                   "BLKKRTD",
                   "DEFRETTD",
@@ -8045,6 +8367,8 @@
               },
               "SCORING_BREAKDOWN": {
                 "fixed": [
+                  "TW",
+                  "TL",
                   "FTD",
                   "PT",
                   "PTY",
@@ -8075,6 +8399,8 @@
               },
               "SCORING_BREAKDOWN": {
                 "fixed": [
+                  "TW",
+                  "TL",
                   "FTD",
                   "FG50P",
                   "FGA50P",
@@ -8155,6 +8481,8 @@
               },
               "SCORING_BREAKDOWN": {
                 "fixed": [
+                  "TW",
+                  "TL",
                   "FTD",
                   "PA0",
                   "PA1",
@@ -12142,6 +12470,396 @@
           "statCategoryId": 0,
           "statTypeId": 0
         },
+        "211": {
+          "abbrev": "PFD",
+          "active": true,
+          "apiIdentifier": "passing.passingFirstDowns",
+          "derived": false,
+          "description": "Passing First Down",
+          "display": true,
+          "displayAbbrev": "PFD",
+          "displayOrder": 211,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 211,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "212": {
+          "abbrev": "RFD",
+          "active": true,
+          "apiIdentifier": "rushing.rushingFirstDowns",
+          "derived": false,
+          "description": "Rushing First Down",
+          "display": true,
+          "displayAbbrev": "RFD",
+          "displayOrder": 212,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 212,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "213": {
+          "abbrev": "REFD",
+          "active": true,
+          "apiIdentifier": "receiving.receivingFirstDowns",
+          "derived": false,
+          "description": "Receiving First Down",
+          "display": true,
+          "displayAbbrev": "REFD",
+          "displayOrder": 213,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 213,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "214": {
+          "abbrev": "FGY",
+          "active": true,
+          "apiIdentifier": "kicking.fieldGoalsMadeYards",
+          "derived": false,
+          "description": "FG Made Yards",
+          "display": true,
+          "displayAbbrev": "FGY",
+          "displayOrder": 214,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 214,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "215": {
+          "abbrev": "FGMY",
+          "active": true,
+          "apiIdentifier": "kicking.fieldGoalsMissedYards",
+          "derived": false,
+          "description": "FG Missed Yards",
+          "display": true,
+          "displayAbbrev": "FGMY",
+          "displayOrder": 215,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 215,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "216": {
+          "abbrev": "FGAY",
+          "active": true,
+          "apiIdentifier": "kicking.fieldGoalAttemptYards",
+          "derived": false,
+          "description": "FG Attempt Yards",
+          "display": true,
+          "displayAbbrev": "FGAY",
+          "displayOrder": 216,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 216,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "217": {
+          "abbrev": "FGY5",
+          "active": true,
+          "derived": false,
+          "description": "Every 5 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY5",
+          "displayOrder": 217,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 217,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "218": {
+          "abbrev": "FGY10",
+          "active": true,
+          "derived": false,
+          "description": "Every 10 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY10",
+          "displayOrder": 218,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 218,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "219": {
+          "abbrev": "FGY20",
+          "active": true,
+          "derived": false,
+          "description": "Every 20 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY20",
+          "displayOrder": 219,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 219,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "220": {
+          "abbrev": "FGY25",
+          "active": true,
+          "derived": false,
+          "description": "Every 25 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY25",
+          "displayOrder": 220,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 220,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "221": {
+          "abbrev": "FGY50",
+          "active": true,
+          "derived": false,
+          "description": "Every 50 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY50",
+          "displayOrder": 221,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 221,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "222": {
+          "abbrev": "FGY100",
+          "active": true,
+          "derived": false,
+          "description": "Every 100 FG Made yards",
+          "display": true,
+          "displayAbbrev": "FGY100",
+          "displayOrder": 222,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 222,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "223": {
+          "abbrev": "FGMY5",
+          "active": true,
+          "derived": false,
+          "description": "Every 5 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY5",
+          "displayOrder": 223,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 223,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "224": {
+          "abbrev": "FGMY10",
+          "active": true,
+          "derived": false,
+          "description": "Every 10 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY10",
+          "displayOrder": 224,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 224,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "225": {
+          "abbrev": "FGMY20",
+          "active": true,
+          "derived": false,
+          "description": "Every 20 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY20",
+          "displayOrder": 225,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 225,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "226": {
+          "abbrev": "FGMY25",
+          "active": true,
+          "derived": false,
+          "description": "Every 25 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY25",
+          "displayOrder": 226,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 226,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "227": {
+          "abbrev": "FGMY50",
+          "active": true,
+          "derived": false,
+          "description": "Every 50 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY50",
+          "displayOrder": 227,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 227,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "228": {
+          "abbrev": "FGMY100",
+          "active": true,
+          "derived": false,
+          "description": "Every 100 FG Missed yards",
+          "display": true,
+          "displayAbbrev": "FGMY100",
+          "displayOrder": 228,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 228,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "229": {
+          "abbrev": "FGAY5",
+          "active": true,
+          "derived": false,
+          "description": "Every 5 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY5",
+          "displayOrder": 229,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 229,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "230": {
+          "abbrev": "FGAY10",
+          "active": true,
+          "derived": false,
+          "description": "Every 10 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY10",
+          "displayOrder": 230,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 230,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "231": {
+          "abbrev": "FGAY20",
+          "active": true,
+          "derived": false,
+          "description": "Every 20 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY20",
+          "displayOrder": 231,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 231,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "232": {
+          "abbrev": "FGAY25",
+          "active": true,
+          "derived": false,
+          "description": "Every 25 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY25",
+          "displayOrder": 232,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 232,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "233": {
+          "abbrev": "FGAY50",
+          "active": true,
+          "derived": false,
+          "description": "Every 50 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY50",
+          "displayOrder": 233,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 233,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
+        "234": {
+          "abbrev": "FGAY100",
+          "active": true,
+          "derived": false,
+          "description": "Every 100 FG Attempt yards",
+          "display": true,
+          "displayAbbrev": "FGAY100",
+          "displayOrder": 234,
+          "displaySortReversed": false,
+          "gamePlayedMarker": false,
+          "id": 234,
+          "pointsScoringEligible": true,
+          "rotoScoringEligible": false,
+          "statCategoryId": 0,
+          "statTypeId": 0
+        },
         "10000": {
           "abbrev": "MISCTD",
           "active": true,
@@ -12506,6 +13224,12 @@
           "displayOrder": 0,
           "id": 3,
           "name": "PROCESS"
+        },
+        {
+          "display": true,
+          "displayOrder": 0,
+          "id": 4,
+          "name": "ANALYZE"
         }
       ],
       "injuryStatusTypes": [
@@ -13031,11 +13755,11 @@
         "id": 2
       }
     ],
-    "seasonConfig": 2021
+    "seasonConfig": 2022
   },
   "country": "us",
-  "currentSeason": 2021,
-  "currentSeasonText": "2021",
+  "currentSeason": 2022,
+  "currentSeasonText": "2022",
   "defaultTopScoringPeriodsCount": 2,
   "eplusLeaguePrize": "$250,000",
   "fantasyGameId": 1,
@@ -13927,6 +14651,50 @@
   "leagueSettingsStatCategoryOverrides": [
     {
       "description": "Passing",
+      "id": 0,
+      "overridePosition": null,
+      "scorablePositions": [
+        {
+          "abbrev": "QB",
+          "active": true,
+          "display": true,
+          "displayOrder": 1,
+          "id": 1,
+          "name": "Quarterback",
+          "parentId": 0,
+          "statCategoryId": 0
+        },
+        {
+          "abbrev": "RB",
+          "active": true,
+          "display": true,
+          "displayOrder": 2,
+          "id": 2,
+          "name": "Running Back",
+          "parentId": 0,
+          "statCategoryId": 0
+        },
+        {
+          "abbrev": "WR",
+          "active": true,
+          "display": true,
+          "displayOrder": 3,
+          "id": 3,
+          "name": "Wide Receiver",
+          "parentId": 0,
+          "statCategoryId": 0
+        },
+        {
+          "abbrev": "TE",
+          "active": true,
+          "display": true,
+          "displayOrder": 4,
+          "id": 4,
+          "name": "Tight End",
+          "parentId": 0,
+          "statCategoryId": 0
+        }
+      ],
       "statAbbrevs": [
         "PY",
         "PY5",
@@ -13951,7 +14719,6 @@
         "P400",
         "SKD"
       ],
-      "id": 0,
       "stats": [
         {
           "abbrev": "PY",
@@ -14335,6 +15102,50 @@
     },
     {
       "description": "Rushing",
+      "id": 1,
+      "overridePosition": null,
+      "scorablePositions": [
+        {
+          "abbrev": "QB",
+          "active": true,
+          "display": true,
+          "displayOrder": 1,
+          "id": 1,
+          "name": "Quarterback",
+          "parentId": 0,
+          "statCategoryId": 0
+        },
+        {
+          "abbrev": "RB",
+          "active": true,
+          "display": true,
+          "displayOrder": 2,
+          "id": 2,
+          "name": "Running Back",
+          "parentId": 0,
+          "statCategoryId": 0
+        },
+        {
+          "abbrev": "WR",
+          "active": true,
+          "display": true,
+          "displayOrder": 3,
+          "id": 3,
+          "name": "Wide Receiver",
+          "parentId": 0,
+          "statCategoryId": 0
+        },
+        {
+          "abbrev": "TE",
+          "active": true,
+          "display": true,
+          "displayOrder": 4,
+          "id": 4,
+          "name": "Tight End",
+          "parentId": 0,
+          "statCategoryId": 0
+        }
+      ],
       "statAbbrevs": [
         "RY",
         "RY5",
@@ -14353,7 +15164,6 @@
         "RY100",
         "RY200"
       ],
-      "id": 1,
       "stats": [
         {
           "abbrev": "RY",
@@ -14634,6 +15444,50 @@
     },
     {
       "description": "Receiving",
+      "id": 2,
+      "overridePosition": null,
+      "scorablePositions": [
+        {
+          "abbrev": "QB",
+          "active": true,
+          "display": true,
+          "displayOrder": 1,
+          "id": 1,
+          "name": "Quarterback",
+          "parentId": 0,
+          "statCategoryId": 0
+        },
+        {
+          "abbrev": "RB",
+          "active": true,
+          "display": true,
+          "displayOrder": 2,
+          "id": 2,
+          "name": "Running Back",
+          "parentId": 0,
+          "statCategoryId": 0
+        },
+        {
+          "abbrev": "WR",
+          "active": true,
+          "display": true,
+          "displayOrder": 3,
+          "id": 3,
+          "name": "Wide Receiver",
+          "parentId": 0,
+          "statCategoryId": 0
+        },
+        {
+          "abbrev": "TE",
+          "active": true,
+          "display": true,
+          "displayOrder": 4,
+          "id": 4,
+          "name": "Tight End",
+          "parentId": 0,
+          "statCategoryId": 0
+        }
+      ],
       "statAbbrevs": [
         "REY",
         "REY5",
@@ -14653,7 +15507,6 @@
         "REY200",
         "RET"
       ],
-      "id": 2,
       "stats": [
         {
           "abbrev": "REY",
@@ -14955,6 +15808,7 @@
     },
     {
       "description": "Kicking",
+      "id": 3,
       "statAbbrevs": [
         "PAT",
         "PATA",
@@ -14975,7 +15829,6 @@
         "FGM50",
         "FGM60"
       ],
-      "id": 3,
       "stats": [
         {
           "abbrev": "PAT",
@@ -15295,6 +16148,7 @@
     },
     {
       "description": "Team Defense / Special Teams",
+      "id": 4,
       "overridePosition": {
         "abbrev": "D/ST",
         "active": true,
@@ -15352,7 +16206,6 @@
         "2PRET",
         "1PSF"
       ],
-      "id": 4,
       "stats": [
         {
           "abbrev": "KR",
@@ -16260,6 +17113,7 @@
     },
     {
       "description": "Miscellaneous",
+      "id": 5,
       "statAbbrevs": [
         "KR",
         "KR10",
@@ -16280,7 +17134,6 @@
         "2PRET",
         "1PSF"
       ],
-      "id": 5,
       "stats": [
         {
           "abbrev": "KR",
@@ -16638,6 +17491,7 @@
     },
     {
       "description": "Defensive Players",
+      "id": 6,
       "statAbbrevs": [
         "SK",
         "HALFSK",
@@ -16654,7 +17508,6 @@
         "STF",
         "PD"
       ],
-      "id": 6,
       "stats": [
         {
           "abbrev": "SK",
@@ -16925,6 +17778,7 @@
     },
     {
       "description": "Head Coach",
+      "id": 7,
       "overridePosition": {
         "abbrev": "HC",
         "active": true,
@@ -16953,7 +17807,6 @@
         "LM20",
         "LM25"
       ],
-      "id": 7,
       "stats": [
         {
           "abbrev": "TW",
@@ -17216,6 +18069,7 @@
     },
     {
       "description": "Punting",
+      "id": 8,
       "statAbbrevs": [
         "PT",
         "PTY",
@@ -17234,7 +18088,6 @@
         "PTA34",
         "PTA33"
       ],
-      "id": 8,
       "stats": [
         {
           "abbrev": "PT",
@@ -17595,6 +18448,7 @@
     "minutesPerPeriod": 15,
     "periods": 4
   },
+  "proSport": "football",
   "rankingSlots": [
     {
       "abbrev": "QB",
@@ -17743,7 +18597,8 @@
   "theme": {
     "background": "#0a210d",
     "highlight": "#1f712b",
-    "primary": "#39b54a",
+    "light": "#41ba42",
+    "primary": "#0d830f",
     "secondary": "#124218"
   },
   "uri_legacy": "ffl",
