@@ -1,11 +1,11 @@
 import { apply } from './apply';
 import { adjustments as dlAdjustments } from './dl';
-import { adjustments as teAdjustments } from './te';
+// import { adjustments as teAdjustments } from './te';
 
 const addTeamAdjustments = settings => ({ players = [], ...rest }) => {
   const adjustments = [
     ...dlAdjustments(settings)(players),
-    ...teAdjustments(settings)(players),
+    // ...teAdjustments(settings)(players),
   ];
 
   return {
