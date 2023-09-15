@@ -1,4 +1,4 @@
-const DL_AST = 20;
+const DL_AST = 7.5;
 const DL_TKS = 25;
 const TE_REC = 10;
 const TE_REC_YDS = 0.5;
