@@ -1,5 +1,5 @@
 import { Adjustment } from 'types/adjustment';
-import { shorten } from 'utils/bitly';
+import { shorten } from 'utils/shortio';
 import { initialize, workbookUrl } from 'utils/google';
 import { getSheet, reset } from 'utils/google/worksheet';
 import { log } from 'utils/log';

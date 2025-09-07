@@ -2,15 +2,15 @@ import { getConfig } from 'config';
 
 const {
   ESPN_LEAGUE_ID: leagueId,
-  ESPN_SEASON_ID: seasonId,
-  ESPN_WEEK_ID: weekId,
+  ESPN_SEASON_ID,
+  ESPN_WEEK_ID,  
 } = getConfig();
 
-const hydrate = rawUrl =>
+const hydrate = (rawUrl, { seasonId } = {}) =>
   rawUrl
     .replace(`{{leagueId}}`, leagueId)
-    .replace(`{{seasonId}}`, seasonId)
-    .replace(`{{weekId}}`, weekId);
+    .replace(`{{seasonId}}`, typeof seasonId === 'undefined' ? ESPN_SEASON_ID : seasonId)
+    .replace(`{{weekId}}`, typeof weekId === 'undefined' ? ESPN_WEEK_ID : weekId);
 
 const Url = {
   API_LEAGUE_SETTINGS:

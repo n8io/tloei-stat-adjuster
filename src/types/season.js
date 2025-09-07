@@ -1,13 +1,62 @@
 import { getConfig } from 'config';
+import { prop, subtract } from 'ramda';
+import { fetch } from 'utils/fetch';
+import { log } from 'utils/log';
+import { LeagueView } from './leagueViews';
+import { hydrate, Url } from './url';
 
-const getCurrent = () => {
-  const { ESPN_SEASON_ID } = getConfig();
+const selector = prop('seasonId');
 
-  return parseInt(ESPN_SEASON_ID, 10);
+let seasonId = null;
+
+const defaultSeasonId = () => {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+
+  if (month > 1 && month < 7) return year - 1;
+
+  return year;
 };
 
-const Season = {
-  getCurrent,
+// eslint-disable-next-line max-statements
+const current = async () => {
+  if (seasonId) return seasonId;
+
+  const config = getConfig();
+
+  const { ESPN_SEASON_ID: tempSeasonId, PREVIOUS_SEASON } = config;
+
+  seasonId = tempSeasonId;
+
+  if (!seasonId) {
+    const url = new URL(
+      hydrate(Url.API_LEAGUE_SETTINGS, { seasonId: defaultSeasonId() })
+    );
+
+    url.searchParams.set(LeagueView.SEARCH_PARAM_NAME, LeagueView.LIGHT);
+
+    log(`👐 Fetching current season ${url.href} ...`);
+
+    const response = await fetch(url.href);
+
+    // eslint-disable-next-line require-atomic-updates
+    seasonId = selector(response);
+
+    log(`👍 Current season is ${seasonId}.`);
+  }
+
+  if (PREVIOUS_SEASON) {
+    log(`◀️ PREVIOUS_SEASON flag provided. Adjusting to prior season.`);
+    // eslint-disable-next-line require-atomic-updates
+    seasonId = subtract(seasonId, 1);
+  }
+
+  log(`🧮 Determined season ${seasonId} should be processed`);
+
+  return seasonId;
 };
 
-export { Season };
+export const Season = {
+  current,
+};

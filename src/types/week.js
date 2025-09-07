@@ -3,6 +3,7 @@ import { prop, subtract } from 'ramda';
 import { fetch } from 'utils/fetch';
 import { log } from 'utils/log';
 import { LeagueView } from './leagueViews';
+import { Season } from './season';
 import { hydrate, Url } from './url';
 
 const selector = prop('scoringPeriodId');
@@ -16,7 +17,8 @@ const getCurrent = async () => {
   let weekId = tempWeekId;
 
   if (!weekId) {
-    const url = new URL(hydrate(Url.API_LEAGUE_SETTINGS));
+    const seasonId = await Season.current();
+    const url = new URL(hydrate(Url.API_LEAGUE_SETTINGS, { seasonId }));
 
     url.searchParams.set(LeagueView.SEARCH_PARAM_NAME, LeagueView.LIGHT);
 

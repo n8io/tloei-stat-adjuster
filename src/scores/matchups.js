@@ -2,6 +2,7 @@ import { defaultTo, evolve, map, pick, pipe, prop } from 'ramda';
 import { LeagueMember } from 'types/leagueMember';
 import { LeagueView } from 'types/leagueViews';
 import { Player } from 'types/player';
+import { Season } from 'types/season';
 import { hydrate, Url } from 'types/url';
 import { fetch as fetchJson } from 'utils/fetch';
 import { log } from 'utils/log';
@@ -31,7 +32,8 @@ const homeTransform = makeMatchupTransform(false);
 
 // eslint-disable-next-line max-statements
 export const fetch = async ({ settings, weekId }) => {
-  const url = new URL(hydrate(Url.API_LEAGUE_SETTINGS));
+  const seasonId = await Season.current();
+  const url = new URL(hydrate(Url.API_LEAGUE_SETTINGS, { seasonId }));
   const members = LeagueMember.selector(settings);
 
   url.searchParams.set(LeagueView.SEARCH_PARAM_NAME, LeagueView.MATCHUPS);

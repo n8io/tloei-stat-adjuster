@@ -1,5 +1,6 @@
 import { getConfig } from 'config';
 import { Adjustment } from 'types/adjustment';
+import { Season } from 'types/season';
 import { hydrate, Url } from 'types/url';
 import { log } from 'utils/log';
 import { post } from 'utils/post';
@@ -10,6 +11,7 @@ const { APPLY_ADJUSTMENTS, NOTIFY } = getConfig();
 
 // eslint-disable-next-line max-statements
 const apply = async ({ matchups, weekId }) => {
+  const seasonId = await Season.current();
   const adjustments = Adjustment.uiToApi(matchups);
 
   if (!Adjustment.hasValidAdjustments(adjustments)) {
@@ -24,7 +26,7 @@ const apply = async ({ matchups, weekId }) => {
     return;
   }
 
-  const url = new URL(hydrate(Url.API_SCORE_ADJUSTMENT));
+  const url = new URL(hydrate(Url.API_SCORE_ADJUSTMENT, { seasonId }));
 
   log(`🔢 Applying stat adjustments ${url.href}...`);
   await post(url.href, adjustments);

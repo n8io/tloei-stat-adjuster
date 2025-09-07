@@ -14,14 +14,12 @@ const config = Object.keys(process.env)
       k.startsWith('ESPN_') ||
       [
         'APPLY_ADJUSTMENTS',
-        'BITLY_ACCESS_TOKEN',
-        'BITLY_APP_CLIENT_ID',
-        'BITLY_APP_SECRET',
         'DEBUG',
         'GOOGLE_DOC_ID',
         'NOTIFY',
         'PREVIOUS_WEEK',
         'PRINT',
+        'SHORT_IO_SECRET',
         'SHOW_CONFIG',
         'SLACK_WEBHOOK_URL',
       ].indexOf(k) > -1
@@ -37,6 +35,7 @@ const getConfig = () =>
       NOTIFY: false,
       PREVIOUS_WEEK: false,
       PRINT: false,
+      SHORT_IO_SECRET: '',
       SHOW_CONFIG: false,
       ...props,
     }),
@@ -54,13 +53,10 @@ const getConfig = () =>
 
 const validate = cfg => {
   const requiredKeys = [
-    'BITLY_ACCESS_TOKEN',
-    'BITLY_APP_CLIENT_ID',
-    'BITLY_APP_SECRET',
     'ESPN_LEAGUE_ID',
-    'ESPN_SEASON_ID',
     'ESPN_SESSION_COOKIE',
     'GOOGLE_DOC_ID',
+    'SHORT_IO_SECRET',
     'SLACK_WEBHOOK_URL',
   ];
 

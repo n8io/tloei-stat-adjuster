@@ -133,7 +133,7 @@ const toHyperlink = (link, text) => `=HYPERLINK("${link}", "${text}")`;
 const linkify = weekId => adjustment => {
   const {homeTeamId, id, Player: name, Owner: owner} = adjustment;
   const leagueId = LeagueId.getCurrent();
-  const seasonId = Season.getCurrent();
+  const seasonId = Season.current();
 
   return {
     ...adjustment,
